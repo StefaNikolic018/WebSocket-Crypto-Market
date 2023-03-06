@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .nav-link {
+    @apply inline-block text-sky-900 font-bold hover:text-sky-700 transition-all duration-200 mr-4;
+  }
+  .nav-link-active {
+    @apply inline-block text-sky-500 font-bold hover:text-sky-700 transition-all duration-200 mr-4;
+  }
+}
