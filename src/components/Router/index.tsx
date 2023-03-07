@@ -14,7 +14,6 @@ export default function Router() {
   const { isLoggedIn } = useUserContext()
 
   return (
-    // <Suspense fallback={<Loader />}>
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
@@ -23,6 +22,14 @@ export default function Router() {
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/details/:symbol"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Dashboard isSpecific={true} />
             </ProtectedRoute>
           }
         />
