@@ -4,13 +4,16 @@ import './App.css'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import UserContextProvider from './context/User/UserContext'
+import { WebSocketContextProvider } from './context/WebSocket/WebSocketContextProvider'
 
 const container = document.getElementById('root')
 const root = createRoot(container!)
 root.render(
   <BrowserRouter>
     <UserContextProvider>
-      <App />
+      <WebSocketContextProvider>
+        <App />
+      </WebSocketContextProvider>
     </UserContextProvider>
   </BrowserRouter>
 )

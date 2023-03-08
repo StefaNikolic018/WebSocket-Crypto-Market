@@ -4,7 +4,7 @@ export default function Header({ isSpecific = false }) {
   return (
     <thead>
       <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-        <th className="py-3 px-6 text-left">Name</th>
+        <th className="py-3 px-6 text-left">Symbol</th>
         <th className="py-3 px-6 text-left">Last</th>
         {!isSpecific && (
           <>
