@@ -39,18 +39,7 @@ export default function Body({ isFavorites }: { isFavorites: boolean }) {
 
   return (
     <tbody className="text-gray-600 text-sm font-light bg-white shadow-md ">
-      {isReady ? (
-        items
-      ) : (
-        <tr>
-          <td
-            className="text-center font-bold py-3 text-xl animate-pulse"
-            colSpan={6}
-          >
-            Loading...
-          </td>
-        </tr>
-      )}
+      {isReady && items}
     </tbody>
   )
 }

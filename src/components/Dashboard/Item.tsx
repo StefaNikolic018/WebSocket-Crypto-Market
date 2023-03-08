@@ -27,7 +27,7 @@ type PairT = {
 }
 
 export default function Item({ pair }: { pair: PairT }) {
-  return (
+  return pair.data ? (
     <tr className="border-b border-gray-200 hover:bg-gray-100 text-md">
       <td className="py-3 px-2 md:px-6 text-left font-bold ">
         <Link
@@ -65,6 +65,15 @@ export default function Item({ pair }: { pair: PairT }) {
       <td className="py-3 font-semibold px-2 md:px-6 text-center">
         {/* DAILY LOW*/}
         {pair.data[9]}
+      </td>
+    </tr>
+  ) : (
+    <tr>
+      <td
+        className="text-center font-bold py-3 text-xl animate-pulse"
+        colSpan={6}
+      >
+        Loading...
       </td>
     </tr>
   )
