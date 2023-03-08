@@ -1,18 +1,12 @@
 /* eslint-disable no-extra-boolean-cast */
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
 import Body from './Body'
 import Header from './Header'
 import useWebSocketContext from '../../context/WebSocket/useWebSocketContext'
-import useFetchSpecific from '../../hooks/useFetchSpecific'
 
-export default function index({ isSpecific = false }) {
-  const { symbol } = useParams()
-  console.log('simbol: ', symbol)
-
+export default function index({ isFavorites = false }) {
   const { isReady, pairs } = useWebSocketContext()
-  const item = useFetchSpecific(symbol)
 
   return (
     <div className="overflow-x-auto w-full">
@@ -20,9 +14,9 @@ export default function index({ isSpecific = false }) {
         <div className="w-full lg:w-5/6">
           <div className="bg-white shadow-md rounded my-6">
             <table className="min-w-max w-full table-auto overflow-scroll">
-              <Header isSpecific={isSpecific} />
+              <Header />
               {isReady ? (
-                <Body pairs={pairs} item={item} />
+                <Body pairs={pairs} isFavorites={isFavorites} />
               ) : (
                 <tbody>
                   <tr className="text-center">

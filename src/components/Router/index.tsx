@@ -9,6 +9,7 @@ import useUserContext from '../../context/User/useUserContext'
 
 // import Loader from '../Components/Loader'
 const Dashboard = lazy(() => import('../Dashboard'))
+const Details = lazy(() => import('../Details'))
 
 export default function Router() {
   const { isLoggedIn } = useUserContext()
@@ -17,19 +18,12 @@ export default function Router() {
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/details/:symbol" element={<Details />} />
         <Route
           path="/favorites"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/details/:symbol"
-          element={
-            <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Dashboard isSpecific={true} />
+              <Dashboard isFavorites={true} />
             </ProtectedRoute>
           }
         />

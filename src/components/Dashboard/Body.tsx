@@ -1,45 +1,29 @@
 /* eslint-disable no-extra-boolean-cast */
 import React, { useMemo } from 'react'
+
 import Item from './Item'
+import useFavorites from '../../hooks/useFavorites'
 
 export default function Body({
   pairs,
-  item
+  isFavorites
 }: {
   pairs: string
-  item: undefined | any
+  isFavorites: boolean
 }) {
+  const { favorites } = useFavorites()
   // If home/favorites page is opened
   const items = useMemo(() => {
     const parsedPairs = JSON.parse(pairs)
-    const keys = !!parsedPairs ? Object.keys(parsedPairs) : []
-    console.log(parsedPairs)
+    const keys = !!parsedPairs
+      ? Object.keys(parsedPairs).filter((key) =>
+          isFavorites ? favorites.includes(parsedPairs[key].pair) : true
+        )
+      : []
+
+    console.log('favoriti: ', parsedPairs)
     return keys.map((key: string) => <Item key={key} pair={parsedPairs[key]} />)
-  }, [pairs])
+  }, [pairs, favorites, isFavorites])
 
-  // If detailed page is opened
-  const detailedItem = useMemo(
-    () =>
-      !!item ? (
-        <tr className="border-b border-gray-200 hover:bg-gray-100 text-md">
-          <td className="py-3 px-6 text-left font-bold ">{item.symbol}</td>
-          <td className="py-3 font-semibold px-6 text-left">
-            {item.last_price}
-          </td>
-          <td className="py-3 font-semibold px-6 text-center">{item.low}</td>
-          <td className="py-3 font-semibold px-6 text-center">
-            {item.high}
-          </td>{' '}
-        </tr>
-      ) : (
-        <tr></tr>
-      ),
-    [item]
-  )
-
-  return (
-    <tbody className="text-gray-600 text-sm font-light">
-      {item ? detailedItem : items}
-    </tbody>
-  )
+  return <tbody className="text-gray-600 text-sm font-light">{items}</tbody>
 }
