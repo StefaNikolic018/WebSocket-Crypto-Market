@@ -8,7 +8,7 @@ Crypto market app made with Vite, React + TailwindCSS + TypeScript and WebSocket
 
 Home page when user is not logged in(fetching through websocket with live updates): ![Screenshot](assets/home.jpg)
 
-When user tries to access authorized pages (based on [South Park S11E10](https://www.southparkstudios.com/episodes/e1yoxn/south-park-imaginationland-season-11-ep-10)): ![Screenshot](assets/auth.jpg)
+When user tries to access authorized pages (based on [South Park S02E04](https://www.southparkstudios.com/episodes/c1m717/south-park-chickenlover-season-2-ep-4)): ![Screenshot](assets/auth.jpg)
 
 Home page when user is logged in: ![Screenshot](assets/logged.jpg)
 
@@ -16,7 +16,7 @@ Details page(fetching from REST API without live updates): ![Screenshot](assets/
 
 Favorites page(fetching through websocket with live updates): ![Screenshot](assets/favorites.jpg)
 
-404 page (based on [South Park S02E04](https://www.southparkstudios.com/episodes/c1m717/south-park-chickenlover-season-2-ep-4)): ![Screenshot](assets/404.jpg)
+404 page (based on [South Park S11E10](https://www.southparkstudios.com/episodes/e1yoxn/south-park-imaginationland-season-11-ep-10)): ![Screenshot](assets/404.jpg)
 
 ### Config
 
