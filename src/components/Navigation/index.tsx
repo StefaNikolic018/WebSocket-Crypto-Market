@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 
 import Item from './Item'
 import useUserContext from '../../context/User/useUserContext'
@@ -10,19 +10,27 @@ const navItems = [
   { name: 'Favorites', url: '/favorites' }
 ]
 
-const renderNavItems = (isLoggedIn: boolean) =>
-  isLoggedIn ? (
-    navItems.map((item) => <Item key={item.name} {...item} />)
-  ) : (
-    <Item name="Home" url="/" />
-  )
+// const renderNavItems = (isLoggedIn: boolean) =>
+//   isLoggedIn ? (
+//     navItems.map((item) => <Item key={item.name} {...item} />)
+//   ) : (
+//     <Item name="Home" url="/" />
+//   )
 
 export default function index() {
   const { isLoggedIn, setIsLoggedIn } = useUserContext()
 
-  const login = useCallback(() => {
+  const login = () => {
     setIsLoggedIn(true)
-  }, [setIsLoggedIn])
+  }
+
+  const navItemsArr = useMemo(() => {
+    return isLoggedIn ? (
+      navItems.map((item) => <Item key={item.name} {...item} />)
+    ) : (
+      <Item name="Home" url="/" />
+    )
+  }, [isLoggedIn])
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-sky-600 p-6 px-[8%]">
@@ -31,7 +39,7 @@ export default function index() {
       </div>
       <div className="flex-grow flex items-center justify-center w-auto">
         <div className="text-md md:text-xl mx-2 lg:flex-grow">
-          {renderNavItems(isLoggedIn)}
+          {navItemsArr}
         </div>
         {!isLoggedIn && (
           <button

@@ -9,7 +9,7 @@ export default function Header() {
         <th className="py-3 px-6 text-center">Change</th>
         <th className="py-3 px-6 text-center">Change Percent</th>
         <th className="py-3 px-6 text-center">High</th>
-        <th className="py-3 px-6 text-center">Low</th>{' '}
+        <th className="py-3 px-6 text-center">Low</th>
       </tr>
     </thead>
   )

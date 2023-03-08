@@ -17,7 +17,6 @@ export default function useFetchSpecific(symbol: string | undefined) {
         headers: { accept: 'application/json' }
       })
       if (res.status === 200) {
-        console.log('ma: ', res.data)
         setItem(res.data)
       }
     } catch (error) {

@@ -55,9 +55,7 @@ export default function Item({ pair }: { pair: DataT | undefined | any }) {
         {pair.data[5]}
       </td>
       <td className="py-3 font-semibold px-6 text-center">{pair.data[8]}</td>
-      <td className="py-3 font-semibold px-6 text-center">
-        {pair.data[9]}
-      </td>{' '}
+      <td className="py-3 font-semibold px-6 text-center">{pair.data[9]}</td>
     </tr>
   )
 }

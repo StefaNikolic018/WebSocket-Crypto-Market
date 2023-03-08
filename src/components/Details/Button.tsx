@@ -1,4 +1,5 @@
 import React from 'react'
+import { RiAddBoxFill, RiDeleteBinFill } from 'react-icons/ri'
 
 export default function Button({
   handle,
@@ -19,7 +20,18 @@ export default function Button({
           : 'bg-red-300 hover:bg-red-200'
       }`}
     >
-      {isAddition ? 'Add to ' : 'Remove from '}favorites
+      {isAddition ? (
+        <>
+          <RiAddBoxFill className="text-green-500 text-lg inline-block mb-1 mr-2" />
+          Add to{' '}
+        </>
+      ) : (
+        <>
+          <RiDeleteBinFill className="text-red-500 text-lg inline-block mb-1 mr-2" />
+          Remove from{' '}
+        </>
+      )}
+      favorites
     </button>
   )
 }

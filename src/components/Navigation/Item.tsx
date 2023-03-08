@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 
-export default function Item({ name, url }: { name: string; url: string }) {
+const Item = ({ name, url }: { name: string; url: string }) => {
   return (
     <NavLink
       to={url}
@@ -11,3 +11,5 @@ export default function Item({ name, url }: { name: string; url: string }) {
     </NavLink>
   )
 }
+
+export default memo(Item)

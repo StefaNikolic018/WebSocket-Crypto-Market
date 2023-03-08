@@ -36,7 +36,7 @@ export default function index() {
                   <th className="py-3 px-6 text-left">Symbol</th>
                   <th className="py-3 px-6 text-left">Last</th>
                   <th className="py-3 px-6 text-center">High</th>
-                  <th className="py-3 px-6 text-center">Low</th>{' '}
+                  <th className="py-3 px-6 text-center">Low</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,7 +50,7 @@ export default function index() {
                   </td>
                   <td className="py-3 font-semibold px-6 text-center">
                     {item?.high!}
-                  </td>{' '}
+                  </td>
                 </tr>
               </tbody>
             </table>
