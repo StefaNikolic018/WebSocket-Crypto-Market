@@ -23,6 +23,7 @@ export default function UserContextProvider({
 }: {
   children: ReactNode
 }) {
+  // Logged in status from local storage
   const status = useMemo(
     () => !!storageSelect('status'),
     [storageSelect('status')]
@@ -31,6 +32,7 @@ export default function UserContextProvider({
   const [isLoggedIn, setIsLoggedIn] = useState(status)
 
   useEffect(() => {
+    // Saving login status in local storage
     if (isLoggedIn) storageInsert('status', '1')
   }, [isLoggedIn])
 

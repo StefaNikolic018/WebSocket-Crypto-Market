@@ -1,15 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-type DataT = {
-  symbol: string
-  last: string
-  daily: string | undefined
-  dailyPercent: string | undefined
-  high: string
-  low: string
-}
 // NEEDED DATA
 // Symbol, Last price, Daily Change, Daily Change Percent, Daily high, Daily low
 
@@ -28,34 +19,53 @@ type DataT = {
 //   9 LOW
 // ]
 
-export default function Item({ pair }: { pair: DataT | undefined | any }) {
+type PairT = {
+  id: number
+  pair: string
+  symbol: string
+  data: number[]
+}
+
+export default function Item({ pair }: { pair: PairT }) {
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100 text-md">
-      <td className="py-3 px-6 text-left font-bold ">
+      <td className="py-3 px-2 md:px-6 text-left font-bold ">
         <Link
           to={`/details/${pair.pair}`}
           className="text-sky-700 hover:text-sky-900 transition-all duration-200"
         >
+          {/* SYMBOL */}
           {pair.symbol}
         </Link>
       </td>
-      <td className="py-3 font-semibold px-6 text-left">{pair.data[6]}</td>
+      <td className="py-3 font-semibold px-2 md:px-6 text-left">
+        {/* LAST PRICE */}
+        {pair.data[6]}
+      </td>
       <td
-        className={`py-3 font-semibold px-6 text-center ${
+        className={`py-3 font-semibold px-2 md:px-6 text-center ${
           String(pair.data[4]).includes('-') ? 'text-red-400' : 'text-green-400'
         }`}
       >
+        {/* DAILY CHANGE */}
         {pair.data[4]}
       </td>
       <td
-        className={`py-3 font-semibold px-6 text-center ${
+        className={`py-3 font-semibold px-2 md:px-6 text-center ${
           String(pair.data[5]).includes('-') ? 'text-red-400' : 'text-green-400'
         }`}
       >
+        {/* DAILY CHANGE PERCENT*/}
         {pair.data[5]}
       </td>
-      <td className="py-3 font-semibold px-6 text-center">{pair.data[8]}</td>
-      <td className="py-3 font-semibold px-6 text-center">{pair.data[9]}</td>
+      <td className="py-3 font-semibold px-2 md:px-6 text-center">
+        {/* DAILY HIGH*/}
+        {pair.data[8]}
+      </td>
+      <td className="py-3 font-semibold px-2 md:px-6 text-center">
+        {/* DAILY LOW*/}
+        {pair.data[9]}
+      </td>
     </tr>
   )
 }

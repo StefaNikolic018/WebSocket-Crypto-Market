@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-extra-boolean-cast */
 import React, { useMemo } from 'react'
 
@@ -11,10 +12,12 @@ export default function Body({ isFavorites }: { isFavorites: boolean }) {
 
   const items = useMemo(() => {
     // Parsing pairs object because of the dependency array
-    const parsedPairs = JSON.parse(pairs)
+    const parsedPairs = pairs ? JSON.parse(String(pairs)) : {}
     const keys = !!parsedPairs
       ? Object.keys(parsedPairs).filter((key) =>
-          isFavorites ? favorites.includes(parsedPairs[key].pair) : true
+          isFavorites
+            ? favorites.includes(parsedPairs[key].pair! as never)
+            : true
         )
       : []
 
@@ -35,7 +38,7 @@ export default function Body({ isFavorites }: { isFavorites: boolean }) {
   }, [pairs, favorites, isFavorites])
 
   return (
-    <tbody className="text-gray-600 text-sm font-light">
+    <tbody className="text-gray-600 text-sm font-light bg-white shadow-md ">
       {isReady ? (
         items
       ) : (

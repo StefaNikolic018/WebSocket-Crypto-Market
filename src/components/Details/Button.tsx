@@ -5,9 +5,10 @@ export default function Button({
   handle,
   isAddition
 }: {
-  handle: any
+  handle: (isAddition: boolean) => void
   isAddition: boolean
 }) {
+  // Handle adding or removing from favorites based on flag
   const handleClick = () => {
     handle(isAddition)
   }

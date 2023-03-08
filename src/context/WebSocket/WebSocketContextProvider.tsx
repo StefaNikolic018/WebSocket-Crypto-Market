@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-extra-boolean-cast */
 import React, {
   useState,
@@ -9,7 +8,23 @@ import React, {
 } from 'react'
 import useFetchSymbols from '../../hooks/useFetchSymbols'
 
-export const WebSocketContext = createContext<any>({
+type PairT = {
+  id: number
+  pair: string
+  symbol: string
+  data?: number[]
+}
+
+type PairsT = {
+  [key: string]: PairT
+}
+
+type WebSocketContextT = {
+  isReady: boolean
+  pairs: undefined | string | PairsT
+}
+
+export const WebSocketContext = createContext<WebSocketContextT>({
   isReady: false,
   pairs: undefined
 })
@@ -19,8 +34,9 @@ export const WebSocketContextProvider = ({
 }: {
   children: ReactNode
 }) => {
-  const [pairs, setPairs] = useState<any>({})
+  const [pairs, setPairs] = useState<PairsT>({} as PairsT)
   const [isReady, setIsReady] = useState(false)
+  // Count that we use as a constraint for checking pairs readiness
   const checkCount = useRef(0)
 
   // Fetching first 5 symbols
@@ -80,7 +96,7 @@ export const WebSocketContextProvider = ({
           }
         }
 
-        setPairs((pairs: any) => {
+        setPairs((pairs: PairsT) => {
           return { ...pairs, ...pairsArr }
         })
       }

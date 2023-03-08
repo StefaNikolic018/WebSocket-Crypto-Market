@@ -6,8 +6,19 @@ import axios from 'axios'
 
 // API: https://api.bitfinex.com/v1/pubticker/symbol
 
+type ItemT = {
+  ask: string
+  bid: string
+  high: string
+  last_price: string
+  low: string
+  mid: string
+  timestamp: string
+  volume: string
+}
+
 export default function useFetchSpecific(symbol: string | undefined) {
-  const [item, setItem] = useState(undefined)
+  const [item, setItem] = useState<ItemT | undefined>(undefined)
 
   const fetchSpecific = async () => {
     try {

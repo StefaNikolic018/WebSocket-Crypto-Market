@@ -10,13 +10,6 @@ const navItems = [
   { name: 'Favorites', url: '/favorites' }
 ]
 
-// const renderNavItems = (isLoggedIn: boolean) =>
-//   isLoggedIn ? (
-//     navItems.map((item) => <Item key={item.name} {...item} />)
-//   ) : (
-//     <Item name="Home" url="/" />
-//   )
-
 export default function index() {
   const { isLoggedIn, setIsLoggedIn } = useUserContext()
 

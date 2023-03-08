@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-extra-boolean-cast */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useEffect, useMemo } from 'react'
 import { storageInsert, storageSelect } from '../utils/storage'
 
 export default function useFavorites() {
-  const favs: any = useMemo(
+  const favs: string[] = useMemo(
     () =>
       !!storageSelect('favorites')
         ? JSON.parse(storageSelect('favorites')!)
         : [],
     [storageSelect('favorites')]
   )
-  const [favorites, setFavorites] = useState<string[] | any[]>(favs)
+  const [favorites, setFavorites] = useState<string[] | []>(favs)
 
   useEffect(() => {
     if (favorites) {
