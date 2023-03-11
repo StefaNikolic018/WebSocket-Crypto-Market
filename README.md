@@ -8,7 +8,7 @@ Crypto market app made with Vite, React + TailwindCSS + TypeScript and WebSocket
 
 Home page when user is not logged in(fetching through websocket with live updates): ![Screenshot](assets/home.jpg)
 
-When user tries to access authorized pages (based on [South Park S02E04](https://www.southparkstudios.com/episodes/c1m717/south-park-chickenlover-season-2-ep-4)): ![Screenshot](assets/auth.jpg)
+Handling unauthorized access (based on [South Park S02E04](https://www.southparkstudios.com/episodes/c1m717/south-park-chickenlover-season-2-ep-4)): ![Screenshot](assets/auth.jpg)
 
 Home page when user is logged in: ![Screenshot](assets/logged.jpg)
 
