@@ -25,7 +25,7 @@ export default function Body({ isFavorites }: { isFavorites: boolean }) {
       // If there is no data
       <tr>
         <td
-          className="text-center font-bold py-3 text-xl animate-pulse"
+          className="animate-pulse py-3 text-center text-xl font-bold"
           colSpan={6}
         >
           No data...
@@ -38,7 +38,7 @@ export default function Body({ isFavorites }: { isFavorites: boolean }) {
   }, [pairs, favorites, isFavorites])
 
   return (
-    <tbody className="text-gray-600 text-sm font-light bg-white shadow-md ">
+    <tbody className="bg-white text-sm font-light text-gray-600 shadow-md ">
       {isReady && items}
     </tbody>
   )
