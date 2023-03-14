@@ -28,22 +28,22 @@ type PairT = {
 
 export default function Item({ pair }: { pair: PairT }) {
   return pair.data ? (
-    <tr className="border-b border-gray-200 hover:bg-gray-100 text-md">
-      <td className="py-3 px-2 md:px-6 text-left font-bold ">
+    <tr className="text-md border-b border-gray-200 hover:bg-gray-100">
+      <td className="py-3 px-2 text-left font-bold md:px-6 ">
         <Link
           to={`/details/${pair.pair}`}
-          className="text-sky-700 hover:text-sky-900 transition-all duration-200"
+          className="text-sky-700 transition-all duration-200 hover:text-sky-900"
         >
           {/* SYMBOL */}
           {pair.symbol}
         </Link>
       </td>
-      <td className="py-3 font-semibold px-2 md:px-6 text-left">
+      <td className="py-3 px-2 text-left font-semibold md:px-6">
         {/* LAST PRICE */}
         {pair.data[6]}
       </td>
       <td
-        className={`py-3 font-semibold px-2 md:px-6 text-center ${
+        className={`py-3 px-2 text-center font-semibold md:px-6 ${
           String(pair.data[4]).includes('-') ? 'text-red-400' : 'text-green-400'
         }`}
       >
@@ -51,18 +51,18 @@ export default function Item({ pair }: { pair: PairT }) {
         {pair.data[4]}
       </td>
       <td
-        className={`py-3 font-semibold px-2 md:px-6 text-center ${
+        className={`py-3 px-2 text-center font-semibold md:px-6 ${
           String(pair.data[5]).includes('-') ? 'text-red-400' : 'text-green-400'
         }`}
       >
         {/* DAILY CHANGE PERCENT*/}
         {pair.data[5]}
       </td>
-      <td className="py-3 font-semibold px-2 md:px-6 text-center">
+      <td className="py-3 px-2 text-center font-semibold md:px-6">
         {/* DAILY HIGH*/}
         {pair.data[8]}
       </td>
-      <td className="py-3 font-semibold px-2 md:px-6 text-center">
+      <td className="py-3 px-2 text-center font-semibold md:px-6">
         {/* DAILY LOW*/}
         {pair.data[9]}
       </td>
@@ -70,7 +70,7 @@ export default function Item({ pair }: { pair: PairT }) {
   ) : (
     <tr>
       <td
-        className="text-center font-bold py-3 text-xl animate-pulse"
+        className="animate-pulse py-3 text-center text-xl font-bold"
         colSpan={6}
       >
         Loading...

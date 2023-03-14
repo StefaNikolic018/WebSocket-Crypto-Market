@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Loader() {
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="flex h-full w-full items-center justify-center">
       <div aria-label="Loading..." role="status">
         <svg className="h-12 w-12 animate-spin" viewBox="3 3 18 18">
           <path

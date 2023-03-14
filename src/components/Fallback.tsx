@@ -33,8 +33,8 @@ export default function Fallback({ type }: { type: string }) {
   }, [])
 
   return (
-    <div className="w-screen flex flex-col justify-center items-center gap-5 mt-5">
-      <h1 className="text-2xl animate-pulse font-bold">{data[type].text}</h1>
+    <div className="mt-5 flex w-screen flex-col items-center justify-center gap-5">
+      <h1 className="animate-pulse text-2xl font-bold">{data[type].text}</h1>
       <img
         src={data[type].img}
         alt="Cover"

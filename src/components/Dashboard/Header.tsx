@@ -3,13 +3,13 @@ import React from 'react'
 export default function Header() {
   return (
     <thead>
-      <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-        <th className="py-3 px-2 md:px-6 text-left">Symbol</th>
-        <th className="py-3 px-2 md:px-6 text-left">Last</th>
-        <th className="py-3 px-2 md:px-6 text-center">Change</th>
-        <th className="py-3 px-2 md:px-6 text-center">Change Percent</th>
-        <th className="py-3 px-2 md:px-6 text-center">High</th>
-        <th className="py-3 px-2 md:px-6 text-center">Low</th>
+      <tr className="bg-gray-200 text-sm uppercase leading-normal text-gray-600">
+        <th className="py-3 px-2 text-left md:px-6">Symbol</th>
+        <th className="py-3 px-2 text-left md:px-6">Last</th>
+        <th className="py-3 px-2 text-center md:px-6">Change</th>
+        <th className="py-3 px-2 text-center md:px-6">Change Percent</th>
+        <th className="py-3 px-2 text-center md:px-6">High</th>
+        <th className="py-3 px-2 text-center md:px-6">Low</th>
       </tr>
     </thead>
   )
