@@ -14,32 +14,26 @@ export default function Router() {
   const { isLoggedIn } = useUserContext()
 
   return (
-    <WebSocketContextProvider>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/details/:symbol" element={<Details />} />
-          <Route
-            path="/favorites"
-            element={
-              <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Dashboard isFavorites={true} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/authority"
-            element={
-              isLoggedIn ? (
-                <Navigate to="/" replace />
-              ) : (
-                <Fallback type="auth" />
-              )
-            }
-          />
-          <Route path="*" element={<Fallback type="404" />} />
-        </Routes>
-      </Suspense>
-    </WebSocketContextProvider>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/favorites"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Dashboard isFavorites={true} />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/details/:symbol" element={<Details />} />
+        <Route
+          path="/authority"
+          element={
+            isLoggedIn ? <Navigate to="/" replace /> : <Fallback type="auth" />
+          }
+        />
+        <Route path="*" element={<Fallback type="404" />} />
+      </Routes>
+    </Suspense>
   )
 }
