@@ -1,5 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 import React, { useMemo } from 'react'
+import useFavorites from '../../hooks/useFavorites'
 import useWebsocket from '../../hooks/useWebsocket'
 
 import Body from '../Shared/Body'
@@ -15,14 +16,17 @@ type PairT = {
 
 export default function index() {
   const { isReady, pairs } = useWebsocket()
+  const { favorites } = useFavorites()
 
   const items = useMemo(() => {
     // Parsing pairs object because of the dependency array
     const parsedPairs = isReady
-      ? Object.values(pairs).map((pair, ind) => <Item key={ind} pair={pair} />)
+      ? Object.values(pairs).filter((pair) =>
+          favorites.includes(pair.pair as never)
+        )
       : []
 
-    return parsedPairs
+    return parsedPairs.map((pair, ind) => <Item key={ind} pair={pair} />)
   }, [isReady, pairs])
 
   return (

@@ -1,12 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-extra-boolean-cast */
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  ReactNode,
-  useRef
-} from 'react'
-import useFetchSymbols from '../../hooks/useFetchSymbols'
+import React, { useState, useEffect, useRef } from 'react'
+import useFetchSymbols from './useFetchSymbols'
 
 type PairT = {
   id: number
@@ -19,35 +15,20 @@ type PairsT = {
   [key: string]: PairT
 }
 
-type WebSocketContextT = {
-  isReady: boolean
-  pairs: undefined | string | PairsT
-}
-
-export const WebSocketContext = createContext<WebSocketContextT>({
-  isReady: false,
-  pairs: {}
-})
-
-export const WebSocketContextProvider = ({
-  children
-}: {
-  children: ReactNode
-}) => {
+export default function useWebsocket() {
   const [pairs, setPairs] = useState<PairsT>({} as PairsT)
   const [isReady, setIsReady] = useState(false)
-  // Count that we use as a constraint for checking pairs readiness
-  const checkCount = useRef(0)
+
+  const websocket = useRef<null | WebSocket>(null)
 
   // Fetching first 5 symbols
   const symbols = useFetchSymbols()
 
   // Waiting for pairs object to be fully populated with data
   useEffect(() => {
-    if (pairs && checkCount.current === 0) {
-      const keys = Object.keys(pairs)
-      if (keys.every((k) => !!pairs[k].data)) {
-        checkCount.current = 1
+    if (pairs && !isReady) {
+      const values = Object.values(pairs)
+      if (values.every((k: PairT) => !!k.data)) {
         setIsReady(true)
       }
     }
@@ -56,17 +37,17 @@ export const WebSocketContextProvider = ({
   // Opening socket and fetching data
   useEffect(() => {
     if (!!symbols.length) {
-      const socket = new WebSocket('wss://api-pub.bitfinex.com/ws/2')
+      websocket.current = new WebSocket('wss://api-pub.bitfinex.com/ws/2')
 
       // Destructuring for new reference
       const pairsArr = { ...pairs }
 
-      socket.onopen = (ev) => {
+      websocket.current.onopen = (ev) => {
         console.log('Socket opened: ', ev)
         // Subscribing to each symbol that we got from REST api
         symbols.forEach((symbol: string) => {
           const symbolUpperCase = symbol.toUpperCase()
-          socket.send(
+          websocket.current!.send(
             JSON.stringify({
               event: 'subscribe',
               channel: 'ticker',
@@ -76,7 +57,7 @@ export const WebSocketContextProvider = ({
         })
       }
 
-      socket.onmessage = (event) => {
+      websocket.current.onmessage = (event) => {
         const data = JSON.parse(event.data)
         // Subscribed event that is happening before the updates
         if (data.event && data.event === 'subscribed') {
@@ -102,17 +83,10 @@ export const WebSocketContextProvider = ({
       }
 
       return () => {
-        socket.close()
+        websocket.current!.close()
       }
     }
   }, [symbols.length])
 
-  return (
-    // Parsing pairs object because of the dependency array
-    <WebSocketContext.Provider
-      value={{ isReady: isReady, pairs: JSON.stringify(pairs) }}
-    >
-      {children}
-    </WebSocketContext.Provider>
-  )
+  return { pairs, isReady }
 }

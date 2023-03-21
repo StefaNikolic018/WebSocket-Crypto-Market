@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React, { memo } from 'react'
+import ItemLink from './ItemLink'
 
 // NEEDED DATA
 // Symbol, Last price, Daily Change, Daily Change Percent, Daily high, Daily low
@@ -23,58 +24,49 @@ type PairT = {
   id: number
   pair: string
   symbol: string
-  data: number[]
+  data?: number[]
 }
 
-export default function Item({ pair }: { pair: PairT }) {
-  return pair.data ? (
+const Item = ({ pair }: { pair: PairT }) => {
+  return (
     <tr className="text-md border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-2 text-left font-bold md:px-6 ">
-        <Link
-          to={`/details/${pair.pair}`}
-          className="text-sky-700 transition-all duration-200 hover:text-sky-900"
-        >
-          {/* SYMBOL */}
-          {pair.symbol}
-        </Link>
+        <ItemLink pair={pair.pair} symbol={pair.symbol} />
       </td>
       <td className="py-3 px-2 text-left font-semibold md:px-6">
         {/* LAST PRICE */}
-        {pair.data[6]}
+        {pair.data![6]}
       </td>
       <td
         className={`py-3 px-2 text-center font-semibold md:px-6 ${
-          String(pair.data[4]).includes('-') ? 'text-red-400' : 'text-green-400'
+          String(pair.data![4]).includes('-')
+            ? 'text-red-400'
+            : 'text-green-400'
         }`}
       >
         {/* DAILY CHANGE */}
-        {pair.data[4]}
+        {pair.data![4]}
       </td>
       <td
         className={`py-3 px-2 text-center font-semibold md:px-6 ${
-          String(pair.data[5]).includes('-') ? 'text-red-400' : 'text-green-400'
+          String(pair.data![5]).includes('-')
+            ? 'text-red-400'
+            : 'text-green-400'
         }`}
       >
         {/* DAILY CHANGE PERCENT*/}
-        {pair.data[5]}
+        {pair.data![5]}
       </td>
       <td className="py-3 px-2 text-center font-semibold md:px-6">
         {/* DAILY HIGH*/}
-        {pair.data[8]}
+        {pair.data![8]}
       </td>
       <td className="py-3 px-2 text-center font-semibold md:px-6">
         {/* DAILY LOW*/}
-        {pair.data[9]}
-      </td>
-    </tr>
-  ) : (
-    <tr>
-      <td
-        className="animate-pulse py-3 text-center text-xl font-bold"
-        colSpan={6}
-      >
-        Loading...
+        {pair.data![9]}
       </td>
     </tr>
   )
 }
+
+export default memo(Item)

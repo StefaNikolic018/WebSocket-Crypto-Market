@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function Header() {
+const Header = () => {
   return (
     <thead>
       <tr className="bg-gray-200 text-sm uppercase leading-normal text-gray-600">
@@ -14,3 +14,5 @@ export default function Header() {
     </thead>
   )
 }
+
+export default memo(Header)

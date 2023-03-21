@@ -4,9 +4,9 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import Loader from '../Loader'
 import ProtectedRoute from './ProtectedRoute'
 import useUserContext from '../../context/User/useUserContext'
-import { WebSocketContextProvider } from '../../context/WebSocket/WebSocketContextProvider'
 
 const Dashboard = lazy(() => import('../Dashboard'))
+const Favorites = lazy(() => import('../Favorites'))
 const Fallback = lazy(() => import('../Fallback'))
 const Details = lazy(() => import('../Details'))
 
@@ -21,7 +21,7 @@ export default function Router() {
           path="/favorites"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Dashboard isFavorites={true} />
+              <Favorites />
             </ProtectedRoute>
           }
         />
