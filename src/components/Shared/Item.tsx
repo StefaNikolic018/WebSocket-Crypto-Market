@@ -28,7 +28,7 @@ type PairT = {
 }
 
 const Item = ({ pair }: { pair: PairT }) => {
-  return (
+  return pair.data ? (
     <tr className="text-md border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-2 text-left font-bold md:px-6 ">
         <ItemLink pair={pair.pair} symbol={pair.symbol} />
@@ -66,6 +66,8 @@ const Item = ({ pair }: { pair: PairT }) => {
         {pair.data![9]}
       </td>
     </tr>
+  ) : (
+    <></>
   )
 }
 

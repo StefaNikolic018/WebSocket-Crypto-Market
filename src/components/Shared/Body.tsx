@@ -10,10 +10,12 @@ type PairT = {
   data?: number[]
 }
 
-const Body = ({ isReady, pairs }: { isReady: boolean; pairs: PairT[] }) => {
+const Body = ({ pairs }: { pairs: PairT[] }) => {
   return (
     <tbody className="bg-white text-sm font-light text-gray-600 shadow-md ">
-      {!isReady ? (
+      {!!pairs.length ? (
+        pairs
+      ) : (
         <tr>
           <td
             className="animate-pulse py-3 text-center text-xl font-bold"
@@ -22,8 +24,6 @@ const Body = ({ isReady, pairs }: { isReady: boolean; pairs: PairT[] }) => {
             <Loader />
           </td>
         </tr>
-      ) : (
-        pairs
       )}
     </tbody>
   )

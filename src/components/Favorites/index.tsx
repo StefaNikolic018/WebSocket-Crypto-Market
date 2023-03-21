@@ -19,7 +19,6 @@ export default function index() {
   const { favorites } = useFavorites()
 
   const items = useMemo(() => {
-    // Parsing pairs object because of the dependency array
     const parsedPairs = isReady
       ? Object.values(pairs).filter((pair) =>
           favorites.includes(pair.pair as never)
@@ -31,7 +30,7 @@ export default function index() {
 
   return (
     <TableWrapper>
-      <Body isReady={isReady} pairs={items as unknown as PairT[]} />
+      <Body pairs={items as unknown as PairT[]} />
     </TableWrapper>
   )
 }

@@ -17,7 +17,6 @@ export default function index() {
   const { isReady, pairs } = useWebsocket()
 
   const items = useMemo(() => {
-    // Parsing pairs object because of the dependency array
     const parsedPairs = isReady
       ? Object.values(pairs).map((pair, ind) => <Item key={ind} pair={pair} />)
       : []
@@ -27,7 +26,7 @@ export default function index() {
 
   return (
     <TableWrapper>
-      <Body isReady={isReady} pairs={items as unknown as PairT[]} />
+      <Body pairs={items as unknown as PairT[]} />
     </TableWrapper>
   )
 }
