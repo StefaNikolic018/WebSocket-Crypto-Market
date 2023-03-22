@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { memo } from 'react'
 
-import PairI from '../../interfaces/pairs'
+import PairI from './../../interfaces/pairs'
 
 import ItemLink from './ItemLink'
 

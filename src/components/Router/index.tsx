@@ -8,7 +8,6 @@ import useUserContext from '../../context/User/useUserContext'
 const Details = lazy(() => import('../Details'))
 const Fallback = lazy(() => import('../Fallback'))
 const Dashboard = lazy(() => import('../Dashboard'))
-const Favorites = lazy(() => import('../Favorites'))
 
 export default function Router() {
   const { isLoggedIn } = useUserContext()
@@ -21,7 +20,8 @@ export default function Router() {
           path="/favorites"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Favorites />
+              {/* <Favorites /> */}
+              <Dashboard isFavorites={true} />
             </ProtectedRoute>
           }
         />

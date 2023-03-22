@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import useFetchSymbols from './useFetchSymbols'
 
-import PairI from '../interfaces/pairs'
+import PairI from './../interfaces/pairs'
 
 type PairsT = {
   [key: string]: PairI

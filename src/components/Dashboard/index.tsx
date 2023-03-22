@@ -1,23 +1,14 @@
 /* eslint-disable no-extra-boolean-cast */
-import React, { useMemo } from 'react'
-import useWebsocket from '../../hooks/useWebsocket'
+import React from 'react'
 
-import Body from '../Shared/Body'
-import Item from '../Shared/Item'
-import TableWrapper from '../Shared/TableWrapper'
+import Body from './Body'
+import useItems from './useItems'
+import TableWrapper from './TableWrapper'
 
-import PairI from '../../interfaces/pairs'
+import PairI from './../../interfaces/pairs'
 
-export default function index() {
-  const { isReady, pairs } = useWebsocket()
-
-  const items = useMemo(() => {
-    const parsedPairs = isReady
-      ? Object.values(pairs).map((pair, ind) => <Item key={ind} pair={pair} />)
-      : []
-
-    return parsedPairs
-  }, [isReady, pairs])
+export default function index({ isFavorites = false }) {
+  const items = useItems(isFavorites)
 
   return (
     <TableWrapper>
