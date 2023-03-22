@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { memo } from 'react'
+
+import PairI from '../../interfaces/pairs'
+
 import ItemLink from './ItemLink'
 
 // NEEDED DATA
@@ -20,14 +23,7 @@ import ItemLink from './ItemLink'
 //   9 LOW
 // ]
 
-type PairT = {
-  id: number
-  pair: string
-  symbol: string
-  data?: number[]
-}
-
-const Item = ({ pair }: { pair: PairT }) => {
+const Item = ({ pair }: { pair: PairI }) => {
   return pair.data ? (
     <tr className="text-md border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-2 text-left font-bold md:px-6 ">

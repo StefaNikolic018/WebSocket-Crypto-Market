@@ -4,15 +4,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import useFetchSymbols from './useFetchSymbols'
 
-type PairT = {
-  id: number
-  pair: string
-  symbol: string
-  data?: number[]
-}
+import PairI from '../interfaces/pairs'
 
 type PairsT = {
-  [key: string]: PairT
+  [key: string]: PairI
 }
 
 export default function useWebsocket() {
@@ -28,7 +23,7 @@ export default function useWebsocket() {
   useEffect(() => {
     if (pairs && !isReady) {
       const values = Object.values(pairs)
-      if (values.every((k: PairT) => !!k.data)) {
+      if (values.every((k: PairI) => !!k.data)) {
         setIsReady(true)
       }
     }

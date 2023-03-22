@@ -3,14 +3,9 @@
 import React, { memo } from 'react'
 import Loader from '../Loader'
 
-type PairT = {
-  id: number
-  pair: string
-  symbol: string
-  data?: number[]
-}
+import PairI from '../../interfaces/pairs'
 
-const Body = ({ pairs }: { pairs: PairT[] }) => {
+const Body = ({ pairs }: { pairs: PairI[] }) => {
   return (
     <tbody className="bg-white text-sm font-light text-gray-600 shadow-md ">
       {!!pairs.length ? (

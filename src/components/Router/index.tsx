@@ -5,10 +5,10 @@ import Loader from '../Loader'
 import ProtectedRoute from './ProtectedRoute'
 import useUserContext from '../../context/User/useUserContext'
 
+const Details = lazy(() => import('../Details'))
+const Fallback = lazy(() => import('../Fallback'))
 const Dashboard = lazy(() => import('../Dashboard'))
 const Favorites = lazy(() => import('../Favorites'))
-const Fallback = lazy(() => import('../Fallback'))
-const Details = lazy(() => import('../Details'))
 
 export default function Router() {
   const { isLoggedIn } = useUserContext()

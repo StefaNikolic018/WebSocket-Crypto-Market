@@ -12,6 +12,19 @@ export default function Button({
   const handleClick = () => {
     handle(isAddition)
   }
+
+  const icon = isAddition ? (
+    <>
+      <RiAddBoxFill className="mb-1 mr-2 inline-block text-lg text-green-500" />
+      Add to{' '}
+    </>
+  ) : (
+    <>
+      <RiDeleteBinFill className="mb-1 mr-2 inline-block text-lg text-red-500" />
+      Remove from{' '}
+    </>
+  )
+
   return (
     <button
       onClick={handleClick}
@@ -21,17 +34,7 @@ export default function Button({
           : 'bg-red-300 hover:bg-red-200'
       }`}
     >
-      {isAddition ? (
-        <>
-          <RiAddBoxFill className="mb-1 mr-2 inline-block text-lg text-green-500" />
-          Add to{' '}
-        </>
-      ) : (
-        <>
-          <RiDeleteBinFill className="mb-1 mr-2 inline-block text-lg text-red-500" />
-          Remove from{' '}
-        </>
-      )}
+      {icon}
       favorites
     </button>
   )
