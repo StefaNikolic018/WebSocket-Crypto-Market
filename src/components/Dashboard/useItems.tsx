@@ -10,12 +10,11 @@ import PairI from './../../interfaces/pairs'
 
 export default function useItems(isFavorites = false) {
   const { isReady, pairs } = useWebsocket()
+
   let favorites: string[] | null = []
 
   if (isFavorites) {
-    favorites = !!storageSelect('favorites')
-      ? JSON.parse(storageSelect('favorites')!)
-      : []
+    favorites = JSON.parse(storageSelect('favorites')!) || []
   }
 
   const items = useMemo(() => {
