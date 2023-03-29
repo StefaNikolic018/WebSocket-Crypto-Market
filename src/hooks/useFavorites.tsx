@@ -6,10 +6,7 @@ import { storageInsert, storageSelect } from '../utils/storage'
 
 export default function useFavorites() {
   const favs: string[] = useMemo(
-    () =>
-      !!storageSelect('favorites')
-        ? JSON.parse(storageSelect('favorites')!)
-        : [],
+    () => JSON.parse(storageSelect('favorites')!) || [],
     [storageSelect('favorites')]
   )
   const [favorites, setFavorites] = useState<string[] | []>(favs)
