@@ -19,7 +19,7 @@ type ItemT = {
   volume: string
 }
 
-export default function index() {
+export default function Details() {
   const { symbol } = useParams()
   const { isLoggedIn } = useUserContext()
 
