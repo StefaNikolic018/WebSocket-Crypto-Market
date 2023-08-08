@@ -4,6 +4,7 @@ const itemsArr = ['Symbol', 'Last', 'Change', 'Change Percent', 'High', 'Low']
 
 const items = itemsArr.map((item, index) => (
   <th
+    key={index}
     className={`py-3 px-2 md:px-6 ${
       index === 0 || index === 1 ? 'text-left' : 'text-center'
     }`}

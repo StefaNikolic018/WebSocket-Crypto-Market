@@ -21,7 +21,7 @@ export default function useWebsocket() {
 
   // Waiting for pairs object to be fully populated with data
   useEffect(() => {
-    if (pairs && !isReady) {
+    if (Object.entries(pairs).length === 5 && !isReady) {
       const values = Object.values(pairs)
       if (values.every((k: PairI) => !!k.data)) {
         setIsReady(true)

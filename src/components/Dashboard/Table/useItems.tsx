@@ -2,11 +2,13 @@
 /* eslint-disable no-extra-boolean-cast */
 import React, { useMemo } from 'react'
 
-import Item from './Item'
-import useWebsocket from '../../hooks/useWebsocket'
-import { storageSelect } from '../../utils/storage'
+import useWebsocket from '../../../hooks/useWebsocket'
 
-import PairI from './../../interfaces/pairs'
+import Item from './Item'
+
+import { storageSelect } from '../../../utils/storage'
+
+import PairI from '../../../interfaces/pairs'
 
 export default function useItems(isFavorites = false) {
   const { isReady, pairs } = useWebsocket()
@@ -37,5 +39,5 @@ export default function useItems(isFavorites = false) {
       : formattedPairs
   }, [isReady, pairs])
 
-  return items
+  return { items, isReady }
 }
